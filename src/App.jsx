@@ -31,6 +31,10 @@ function App() {
     function handleClick(i) {
       console.log('click');
 
+      if (squares[i]) {
+        return;
+      }
+
       const nextSquares = squares.slice();
 
       if (oIsNext) {
