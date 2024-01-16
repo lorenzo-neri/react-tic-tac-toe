@@ -19,21 +19,30 @@ function App() {
   /* COMPONENTE BOARD (CHE RACCHIUDE PIù COMPONENTI SQAURE) */
   function Board() {
 
-    /* FUNZIONE CHE SI SCATENA AL CLICK SUL BOTTONE */
-    function handleClick(i) {
-      console.log('click');
-
-      const nextSquares = squares.slice();
-      nextSquares[i] = 'O';
-
-      setSquares(nextSquares);
-    }
-
     /* 
      - creo un nuovo array con 9 elementi vuoto
      - riempio ogni elemento dell'array con il valore null
     */
     const [squares, setSquares] = useState(Array(9).fill(null));
+
+    const [oIsNext, setOIsNext] = useState(true);
+
+    /* FUNZIONE CHE SI SCATENA AL CLICK SUL BOTTONE */
+    function handleClick(i) {
+      console.log('click');
+
+      const nextSquares = squares.slice();
+
+      if (oIsNext) {
+        nextSquares[i] = 'O';
+      } else {
+        nextSquares[i] = 'X';
+      }
+
+      setSquares(nextSquares);
+      setOIsNext(!oIsNext);
+    }
+
 
     return (
       <>
