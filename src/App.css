@@ -1,4 +1,4 @@
-.square {
+/* .square {
   background-color: lightcoral;
   width: 3rem;
   aspect-ratio: 1;
@@ -7,9 +7,92 @@
 .board-row {
   display: block;
   width: 100%;
+} */
+
+
+#root {
+  scale: 1.5;
+  background-color: lightgray;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
 }
 
+.board {
+  border: 2px solid #333;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
 
+.board-row {
+  display: flex;
+}
+
+.square {
+  background-color: #fff;
+  border: 1px solid #999;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  transition: background-color 0.3s ease;
+}
+
+.square:hover {
+  background-color: #f0f0f0;
+}
+
+.status {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.winner {
+  color: green;
+  font-weight: bold;
+}
+
+.draw {
+  color: #333;
+  font-weight: bold;
+}
+
+.credits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    padding: 1rem;
+  }
+}
+
+.reset-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+}
 
 /* #root {
   max-width: 1280px;

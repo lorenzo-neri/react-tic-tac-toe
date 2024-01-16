@@ -16,6 +16,15 @@ function App() {
   }
 
 
+  function ResetButton({ onResetClick }) {
+    return (
+      <button className="reset-button" onClick={onResetClick}>
+        Reset Game
+      </button>
+    );
+  }
+
+
   /* COMPONENTE BOARD (CHE RACCHIUDE PIù COMPONENTI SQAURE) */
   function Board() {
 
@@ -29,8 +38,14 @@ function App() {
 
     const winner = calculateWinner(squares);
     let status;
+    let statusClass = "status"; // Classe di base
+
     if (winner) {
-      status = winner + ' is the winner! 🏆'
+      status = winner + ' is the winner! 🏆';
+      statusClass += " winner";
+    } else if (squares.every(square => square !== null)) {
+      status = 'It\'s a draw!';
+      statusClass += " draw"; //Aggiunge la classe 'draw' quando c'è un pareggio
     } else {
       status = 'Next player is ' + (oIsNext ? 'O' : 'X');
     }
@@ -81,25 +96,36 @@ function App() {
     }
 
 
+    function handleReset() {
+      setSquares(Array(9).fill(null));
+      setOIsNext(true);
+    }
+
+
     return (
       <>
 
-        <h4 className="status">{status}</h4>
+        <div className='board'>
+          <h4 className={statusClass}>{status}</h4>
 
-        <div className="board-row">
-          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-        </div>
-        <div className="board-row">
-          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-        </div>
-        <div className="board-row">
-          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+
+          <div className="board-row">
+            <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+            <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+            <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+          </div>
+          <div className="board-row">
+            <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+            <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+            <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+          </div>
+          <div className="board-row">
+            <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+            <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+            <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+          </div>
+
+          <ResetButton onResetClick={handleReset} />
         </div>
       </>
     );
@@ -108,6 +134,12 @@ function App() {
 
   return (
     <>
+      <h3 className='credits'>
+        Game created with
+        <img src="src/assets/react.svg" alt="" />
+        and
+        <img src="public/vite.svg" alt="" />
+      </h3>
       {/* RICHIAMO IL COMPONENTE BOARD */}
       <Board />
     </>
