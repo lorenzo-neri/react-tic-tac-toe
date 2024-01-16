@@ -1,5 +1,7 @@
 .square {
   background-color: lightcoral;
+  width: 3rem;
+  aspect-ratio: 1;
 }
 
 .board-row {

@@ -1,3 +1,6 @@
+/* 
+In React, it’s conventional to use onSomething names for props which represent events and handleSomething for the function definitions which handle those events.
+ */
 import { useState } from 'react';
 import './App.css';
 
@@ -5,22 +8,26 @@ function App() {
 
 
   /* COMPONENTE SQAURE*/
-  function Square() {
+  function Square({ value, onSquareClick }) {
 
-    const [value, setValue] = useState(null);
+    /* const [value, setValue] = useState(null); */
 
-    /* FUNZIONE CHE SI SCATENA AL CLICK SUL BOTTONE */
-    function handleClick() {
-      console.log('click');
-      setValue('X');
-    }
-
-    return <button onClick={handleClick} className='square'>{value}</button>
+    return <button onClick={onSquareClick} className='square'>{value}</button>
   }
 
 
   /* COMPONENTE BOARD (CHE RACCHIUDE PIù COMPONENTI SQAURE) */
   function Board() {
+
+    /* FUNZIONE CHE SI SCATENA AL CLICK SUL BOTTONE */
+    function handleClick(i) {
+      console.log('click');
+
+      const nextSquares = squares.slice();
+      nextSquares[i] = 'O';
+
+      setSquares(nextSquares);
+    }
 
     /* 
      - creo un nuovo array con 9 elementi vuoto
@@ -31,19 +38,19 @@ function App() {
     return (
       <>
         <div className="board-row">
-          <Square value={squares[0]} />
-          <Square value={squares[1]} />
-          <Square value={squares[2]} />
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
         </div>
         <div className="board-row">
-          <Square value={squares[3]} />
-          <Square value={squares[4]} />
-          <Square value={squares[5]} />
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
         </div>
         <div className="board-row">
-          <Square value={squares[6]} />
-          <Square value={squares[7]} />
-          <Square value={squares[8]} />
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
         </div>
       </>
     );
