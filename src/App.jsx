@@ -1,12 +1,23 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
 
-  function Square({ value }) {
-    return <button className='square'>{value}</button>
+  /* FUNZIONE CHE SI SCATENA AL CLICK SUL BOTTONE */
+  function handleClick() {
+    console.log('click');
   }
 
+  const [value, setValue] = useState(null);
+
+  /* COMPONENTE SQAURE*/
+  function Square({ value }) {
+
+
+    return <button onClick={handleClick} className='square'>{value}</button>
+  }
+
+  /* COMPONENTE BOARD (CHE RACCHIUDE PIù COMPONENTI SQAURE) */
   function Board() {
     return (
       <>
@@ -32,6 +43,7 @@ function App() {
 
   return (
     <>
+      {/* RICHIAMO IL COMPONENTE BOARD */}
       <Board />
     </>
   )
